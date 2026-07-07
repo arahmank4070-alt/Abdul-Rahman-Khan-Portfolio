@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Apex Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. CORE SETUP - Consulting Dark Theme */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0f172a; /* Dark Navy Base */
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            place-items: center;
+            padding: 40px 0;
+            font-family: 'Lato', sans-serif;
+            color: #f8fafc;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #0f172a;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            /* Abstract Background Design: Flowing Lines */
+            background-image: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        /* 2. TYPOGRAPHY */
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .slide-title {
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: left;
+            width: 100%;
+            border-left: 6px solid #10b981; /* Accent Emerald */
+            padding-left: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p, li, td, th {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #cbd5e1; /* Light Slate */
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #94a3b8;
+            margin-top: 20px;
+        }
+
+        /* 3. LAYOUT SPECIFICS */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Title Slide Layout */
+        .title-layout {
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-layout h1 {
+            font-size: 84px;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-layout .accent-bar {
+            width: 120px;
+            height: 8px;
+            background: #10b981;
+            margin: 30px 0;
+        }
+
+        /* Section Title Layout */
+        .section-title-layout {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .section-title-layout h2 {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .section-title-layout .divider {
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+        }
+
+        /* Tiled Layouts */
+        .two-column.tiled {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .tile {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease;
+        }
+
+        .tile h3 {
+            color: #10b981;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .tile .icon {
+            font-size: 48px;
+            color: #3b82f6;
+            margin-bottom: 24px;
+        }
+
+        .tiled-content {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+        }
+
+        /* Image Layouts */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .image-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            height: 400px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rounded-image-layout .image-wrapper {
+            border-radius: 50%;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 8px solid #1e293b;
+        }
+
+        /* Charts */
+        .chart-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .bar .label {
+            width: 250px;
+            text-align: right;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .bar-inner {
+            flex-grow: 1;
+            background: #1e293b;
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+            justify-content: flex-end;
+            font-weight: 700;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .doughnut-chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .doughnut-chart {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .doughnut-chart::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
+            height: 240px;
+            background: #0f172a;
+            border-radius: 50%;
+        }
+
+        .legend {
+            list-style: none;
+        }
+
+        .legend li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .color-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #1e293b;
+            text-align: left;
+            padding: 20px;
+            font-weight: 700;
+            color: #10b981;
+            border-bottom: 2px solid #334155;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Timeline */
+        .timeline-layout {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding-top: 50px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #334155;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            width: 22%;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .timeline-item::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            border: 4px solid #0f172a;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Highlighted Numbers */
+        .highlight-numbers-layout .number {
+            font-size: 160px;
+            font-weight: 700;
+            color: #10b981;
+            line-height: 1;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .number-label {
+            font-size: 32px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        /* Footer Info */
+        .footer-info {
+            position: absolute;
+            bottom: 30px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title_Slide -->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>PROJECT APEX<br>INITIATIVE</h1>
+        <div class="accent-bar"></div>
+        <p class="subtitle">Next-Generation Operational Efficiency Transformation</p>
+        <div style="margin-top: 60px;">
+            <p><strong>Lead:</strong> Strategic Solutions Group</p>
+            <p><strong>Quarter:</strong> Q3 2024</p>
+        </div>
+    </div>
+    <div class="footer-info">
+        <span>Confidential</span>
+        <span>Apex Initiative 2024</span>
+    </div>
+</div>
+
+<!-- Slide 2: Section_Title -->
+<div class="slide-container" id="slide2">
+    <div class="section-title-layout">
+        <h2>STRATEGIC OVERVIEW</h2>
+        <div class="divider"></div>
+        <p class="subtitle" style="max-width: 800px; margin-top: 40px;">Aligning core business processes with cutting-edge technology to drive sustainable competitive advantage.</p>
+    </div>
+</div>
+
+<!-- Slide 3: Two_Column_Tiled_Text -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">CHALLENGES & OPPORTUNITIES</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div class="tile">
+                <h3>Current Challenges</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 10px;"></i> Legacy Infrastructure limitations</li>
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 10px;"></i> Highly manual reporting processes</li>
+                    <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 10px;"></i> Fragmented data silos across regions</li>
+                </ul>
+            </div>
+            <div class="tile">
+                <h3>Strategic Opportunities</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-circle-check" style="color: #10b981; margin-right: 10px;"></i> Cloud-native architecture integration</li>
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-circle-check" style="color: #10b981; margin-right: 10px;"></i> AI-driven process automation</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: #10b981; margin-right: 10px;"></i> Centralized real-time intelligence</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Tiled_Text_With_Icons -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">CORE PROJECT OBJECTIVES</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>Deploying a robust, scalable infrastructure that supports rapid prototyping and long-term tech evolution.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>Speed</h3>
+                <p>Targeting a 50% reduction in end-to-end delivery timelines through agile workflows and automation.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Accuracy</h3>
+                <p>Achieving 99.9% data reliability by eliminating manual touchpoints and implementing automated validation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Image_Right_Text_Left -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">PROJECT SCOPE BOUNDARIES</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>Defining Delivery Limits</h3>
+                <p style="margin-bottom: 25px;">Clear scoping ensures focus on high-impact deliverables while maintaining budget integrity.</p>
+                <div style="background: #1e293b; padding: 30px; border-radius: 12px;">
+                    <p style="color: #10b981; font-weight: 700; margin-bottom: 10px;">IN-SCOPE</p>
+                    <p style="font-size: 16px;">• Global system audit & blueprinting<br>• Migration of core regional databases<br>• User Acceptance Testing (UAT)</p>
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #334155;">
+                    <p style="color: #ef4444; font-weight: 700; margin-bottom: 10px;">OUT-OF-SCOPE</p>
+                    <p style="font-size: 16px;">• Direct hardware procurement<br>• Maintenance of sunsetting legacy apps</p>
+                </div>
+            </div>
+            <div class="image-wrapper">
+                <!-- Image retrieved form function call results: Digital Blueprint -->
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/15896724527234420384" alt="Digital network blueprint">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Rounded_Image_and_Text -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">LEADERSHIP & GOVERNANCE</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="rounded-image-layout">
+                <div class="image-wrapper">
+                    <!-- Image retrieved form function call results: Executive Portrait -->
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/18380458179394064667" alt="Business Executive Headshot">
+                </div>
+            </div>
+            <div>
+                <h3>Meet the Steering Committee</h3>
+                <p>Led by industry veterans, our committee provides the strategic oversight and cross-functional synergy required for large-scale transformation.</p>
+                <ul style="margin-top: 20px; list-style: none;">
+                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-chevron-right" style="color: #3b82f6;"></i> Weekly milestone reviews</li>
+                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-chevron-right" style="color: #3b82f6;"></i> Monthly stakeholder updates</li>
+                    <li><i class="fa-solid fa-chevron-right" style="color: #3b82f6;"></i> Quarterly budget re-evaluations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Timeline -->
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">2024 PROJECT ROADMAP</h2>
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <h3>PHASE 1</h3>
+                <p><strong>Q1: Discovery</strong><br>Market research and technical audit.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>PHASE 2</h3>
+                <p><strong>Q2: Architecture</strong><br>System design and core build-out.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>PHASE 3</h3>
+                <p><strong>Q3: Pilot</strong><br>Limited rollout and refinement.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>PHASE 4</h3>
+                <p><strong>Q4: Rollout</strong><br>Global launch and stabilization.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Bar_Chart_For_Comparisons -->
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">EXPECTED EFFICIENCY GAINS</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <div class="bar">
+                <div class="label">Manual Tasks (Vol)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 25%; background: #ef4444;">80 vs 20</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Error Rate (%)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 15%; background: #f59e0b;">15% vs 2%</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">Processing Time (Hrs)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 12%; background: #10b981;">40h vs 5h</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 40px; text-align: center; color: #94a3b8; font-style: italic;">*Comparison of current baseline metrics against projected post-implementation goals.</p>
+    </div>
+</div>
+
+<!-- Slide 9: Doughnut_Chart_For_Proportions -->
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">STRATEGIC RESOURCE SPLIT</h2>
+    <div class="content-area">
+        <div class="doughnut-chart-container">
+            <div class="doughnut-chart" style="background: conic-gradient(#3b82f6 0% 40%, #10b981 40% 65%, #f59e0b 65% 85%, #8b5cf6 85% 100%);"></div>
+            <ul class="legend">
+                <li><div class="color-box" style="background-color: #3b82f6;"></div> Development (40%)</li>
+                <li><div class="color-box" style="background-color: #10b981;"></div> Strategic Consulting (25%)</li>
+                <li><div class="color-box" style="background-color: #f59e0b;"></div> Change Mgmt (20%)</li>
+                <li><div class="color-box" style="background-color: #8b5cf6;"></div> Training (15%)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Table -->
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">KEY RISK MITIGATION</h2>
+    <div class="content-area">
+        <table>
+            <thead>
+                <tr>
+                    <th>Identified Risk</th>
+                    <th>Impact Level</th>
+                    <th>Mitigation Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Loss during Migration</td>
+                    <td style="color: #ef4444; font-weight: bold;">CRITICAL</td>
+                    <td>Continuous cloud-based real-time backup and sandbox validation.</td>
+                </tr>
+                <tr>
+                    <td>Internal User Resistance</td>
+                    <td style="color: #f59e0b; font-weight: bold;">MEDIUM</td>
+                    <td>Comprehensive training workshops and early-adopter reward programs.</td>
+                </tr>
+                <tr>
+                    <td>Initial Budget Overrun</td>
+                    <td style="color: #3b82f6; font-weight: bold;">LOW</td>
+                    <td>15% contingency buffer allocated and weekly burn-rate audits.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Slide 11: Highlighted_Numbers -->
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">PROJECTED RETURN ON INVESTMENT</h2>
+    <div class="content-area">
+        <div class="two-column" style="grid-template-columns: 40% 60%;">
+            <div class="highlight-numbers-layout">
+                <div class="number">350%</div>
+                <div class="number-label">ROI TARGET</div>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 20px;">Financial Sustainability</h3>
+                <p>The Project Apex Initiative is designed to reach a break-even point within the first 6 months post-rollout.</p>
+                <p style="margin-top: 15px;">By optimizing resource utilization and automating manual overhead, the company will realize a total return of 3.5x within the first 18 months of operation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 12: Q&A -->
+<div class="slide-container" id="slide12">
+    <div class="title-layout">
+        <h2 style="font-size: 80px;">QUESTIONS &<br>NEXT STEPS</h2>
+        <div class="accent-bar"></div>
+        <p class="subtitle">Final review session: Tuesday, Aug 20</p>
+        <div style="margin-top: 40px; text-align: center;">
+            <p><strong>Inquiries:</strong> strategy@apex-initiative.com</p>
+            <p><strong>Portal:</strong> internal.apex-initiative.com</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
